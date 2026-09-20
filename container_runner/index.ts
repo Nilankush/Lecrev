@@ -13,7 +13,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     credentials:true
 }));
 
@@ -22,7 +22,7 @@ const consumer = new Redis(process.env.REDIS_URL as string);
 ;
 
 const ioServer = new Server({cors:{
-    origin:"http://http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     methods: ["GET","POST"]
 }});
 
