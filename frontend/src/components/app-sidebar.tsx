@@ -30,19 +30,17 @@ export function AppSidebar() {
   throw new Error("ProjectInfoContext must be used within a provider.");
   };
 
-  const{projectInfo, setProjectInfo} = projectInfoContext;
-
   if(!openSignInContext){
     throw new Error("OpenSignInContext must be used within a provider.");
   };
 
-  const{openSignIn, setOpenSignIn} = openSignInContext;
+  
 
   const logOut = async() => {
     await authClient.signOut({
       fetchOptions:{
         onSuccess: ()=>{
-          setOpenSignIn(true);
+          openSignInContext.setOpenSignIn(true);
           navigate("/");
         }
       }
@@ -78,7 +76,7 @@ export function AppSidebar() {
                   <CollapsibleTrigger>
                     <SidebarMenuButton 
                     onClick={()=>{
-                      setProjectInfo({project_id:"",projectUrl:""});
+                      projectInfoContext.setProjectInfo({project_id:"",projectUrl:""});
                       navigate("/");}} 
                     className="w-50" 
                     tooltip="Home">
@@ -93,7 +91,7 @@ export function AppSidebar() {
                   <CollapsibleTrigger>
                     <SidebarMenuButton 
                     onClick={()=>{
-                      setProjectInfo({project_id:"",projectUrl:""})
+                      projectInfoContext.setProjectInfo({project_id:"",projectUrl:""})
                       navigate("/projects")}} 
                     className="w-50" tooltip="Projects">
                       <RiProjectorFill />
@@ -107,7 +105,7 @@ export function AppSidebar() {
                   <CollapsibleTrigger>
                     <SidebarMenuButton 
                     onClick={()=>{
-                      setProjectInfo({project_id:"",projectUrl:""})
+                      projectInfoContext.setProjectInfo({project_id:"",projectUrl:""})
                       navigate("/logs")}} 
                     className="w-50" tooltip="Logs">
                       <LogsIcon />
@@ -148,7 +146,7 @@ export function AppSidebar() {
         (<Collapsible defaultOpen={false}>
           <SidebarMenuItem>
             <CollapsibleTrigger>
-              <SidebarMenuButton onClick={()=>setOpenSignIn(true)} className="w-50" tooltip="SignUp">
+              <SidebarMenuButton onClick={()=>openSignInContext.setOpenSignIn(true)} className="w-50" tooltip="SignUp">
                 <LogIn/>
                 <span>SignUp</span>
               </SidebarMenuButton>
