@@ -162,7 +162,6 @@ export function UploadDialog({...props}: UploadDialogProps) {
           </div>
           }
           <DialogFooter>
-            {env && env.map((e,i)=><p key={i}>{e.name}:{e.value}</p>)}
             {error && <p className="text-red-500">{error}</p>}
             <DialogClose render={<Button variant="outline">Cancel</Button>} />
             <Button 
