@@ -1,0 +1,30 @@
+{
+  "name": "container_runner",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "npx tsx --watch --env-file=.env index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ecs": "^3.1105.0",
+    "@aws-sdk/client-s3": "^3.1128.0",
+    "better-auth": "^1.7.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "ioredis": "^6.0.0",
+    "mongoose": "^9.9.4",
+    "random-word-slugs": "^0.1.7",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.2",
+    "tsx": "^4.23.10",
+    "typescript": "^7.0.2"
+  }
+}
