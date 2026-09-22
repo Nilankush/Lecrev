@@ -14,7 +14,7 @@ export default function Logs({...props}:logsProps):React.JSX.Element{
 
     useEffect(()=>{
         
-        const socket: Socket = io("http://localhost:5000",{transports:["websocket"]});
+        const socket: Socket = io(import.meta.env.VITE_SERVER_URL,{transports:["websocket"]});
 
         const pushLogs = (log: string)=>{
             setLogs((prev)=>[...(prev ? prev : []),log]);            
