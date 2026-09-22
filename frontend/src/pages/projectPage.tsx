@@ -32,7 +32,7 @@ export default function ProjectPage():React.JSX.Element{
 
     const fetchProjects = async(user: any) => {
         if(user){
-            const  res: AxiosResponse = await axios.get(`http://localhost:5000/project/allProjects`,{withCredentials: true});
+            const  res: AxiosResponse = await axios.get(`${import.meta.env.VITE_SERVER_URL}/project/allProjects`,{withCredentials: true});
             setProjects(res.data);
         };
     };

@@ -8,6 +8,7 @@ import { toNodeHandler } from "better-auth/node";
 import auth from "./lib/auth.js";
 import logModel from "./models/logsModel.js";
 import logRouter from "./Routes/logRouter.js";
+import { createServer } from "http";
 const PORT = process.env.PORT
 const app = express();
 
@@ -19,9 +20,9 @@ app.use(cors({
 
 const consumer = new Redis(process.env.REDIS_URL as string);
 
-;
+const httpServer = createServer(app);
 
-const ioServer = new Server({cors:{
+const ioServer = new Server(httpServer,{cors:{
     origin: process.env.CLIENT_URL,
     methods: ["GET","POST"]
 }});
@@ -32,8 +33,6 @@ ioServer.on("connection", socket=>{
     socket.emit("logs");
  })
 });
-
-ioServer.listen(4000);
 
 app.all("/auth/*any", toNodeHandler(auth));
 
@@ -84,6 +83,8 @@ process.on("SIGTERM", flush);
 
 await connectDB();
 
-app.listen(PORT,()=>{
-    console.log("Container runner server is running...");    
+httpServer.listen(PORT,()=>{
+    console.log("Container runner server is running...");
+    console.log("socket server is running...");
+        
 });

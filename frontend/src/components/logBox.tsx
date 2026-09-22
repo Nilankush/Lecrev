@@ -8,10 +8,8 @@ export default function LogBox({project_id}: PropSchema):React.JSX.Element{
 
     const[logs, setLogs] = useState<string[]>([]);
 
-    const fetchLogs = async() => {
-        console.log(`http://localhost:5000/logs/${project_id}`);
-        
-        const res = await axios.get(`http://localhost:5000/logs/${project_id}`,{withCredentials: true});
+    const fetchLogs = async() => {        
+        const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/logs/${project_id}`,{withCredentials: true});
         console.log(res.data);
 
         if(res.data.length > 1){  
