@@ -22,7 +22,13 @@ const auth = betterAuth({
                     secure: true
                 }
             } 
-        }
+        },
+        ipAddress:{
+            ipAddressHeaders:["x-forwarded-for", "x-real-ip", "cf-connecting-ip"],
+        },        
+    },
+    rateLimit: {
+        enabled: true
     },
     trustedOrigins: [ process.env.CLIENT_URL as string ],
     socialProviders:{
