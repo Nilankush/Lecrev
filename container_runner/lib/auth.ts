@@ -14,6 +14,14 @@ const auth = betterAuth({
     advanced:{
         database:{
             joins: true
+        },
+        cookies:{
+            state:{
+                attributes:{
+                    sameSite: "none",
+                    secure: true
+                }
+            } 
         }
     },
     trustedOrigins: [ process.env.CLIENT_URL as string ],
