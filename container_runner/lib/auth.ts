@@ -25,7 +25,8 @@ const auth = betterAuth({
         },
         ipAddress:{
             ipAddressHeaders:["x-forwarded-for", "x-real-ip", "cf-connecting-ip"],
-        },        
+        }, 
+        trustedProxyHeaders: true       
     },
     rateLimit: {
         enabled: true
