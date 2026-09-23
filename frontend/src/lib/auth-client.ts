@@ -8,7 +8,7 @@ export const authClient = createAuthClient({
 export const githubSignIn = async() => {
             await authClient.signIn.social({
             provider: "github",
-            callbackURL: "https://lecrev.dasnilankush28.workers.dev/"
+            callbackURL: "/"
         });
     }; 
        
