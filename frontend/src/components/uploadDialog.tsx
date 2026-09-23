@@ -65,7 +65,7 @@ export function UploadDialog({...props}: UploadDialogProps) {
       return setError("Please add the last env that you have entered.")
     };
 
-    const res: AxiosResponse = await axios.post("http://localhost:5000/project",
+    const res: AxiosResponse = await axios.post(`${import.meta.env.VITE_SERVER_URL}/project`,
       {
         gitUrl: props.gitUrl,
         projectId: projectInfo.project_id,

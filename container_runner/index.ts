@@ -12,7 +12,7 @@ import { createServer } from "http";
 const PORT = process.env.PORT
 const app = express();
 
-
+app.set("trust proxy", true);
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials:true
