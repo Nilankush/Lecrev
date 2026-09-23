@@ -10,6 +10,7 @@ const client = mongoConn.connection.getClient();
 const db = client.db();
 
 const auth = betterAuth({
+    baseURL:process.env.BETTER_AUTH_URL,
     database: mongodbAdapter(db),
     advanced:{
         database:{
@@ -21,7 +22,7 @@ const auth = betterAuth({
                     sameSite: "none",
                     secure: true,
                     httpOnly: true,
-                    partitioned:true
+                    path:"/"
                 }
             } 
         },
