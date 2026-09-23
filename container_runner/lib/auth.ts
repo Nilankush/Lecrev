@@ -23,6 +23,9 @@ const auth = betterAuth({
                 }
             } 
         },
+        cookieCache:{
+            enabled: true
+        },
         ipAddress:{
             ipAddressHeaders:["x-forwarded-for", "x-real-ip", "cf-connecting-ip"],
         }, 
