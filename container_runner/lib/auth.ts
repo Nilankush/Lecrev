@@ -19,7 +19,8 @@ const auth = betterAuth({
             state:{
                 attributes:{
                     sameSite: "none",
-                    secure: true
+                    secure: true,
+                    partitioned: true
                 }
             } 
         },

@@ -10,6 +10,5 @@ export const githubSignIn = async() => {
             provider: "github",
             callbackURL: "https://lecrev.dasnilankush28.workers.dev/"
         });
-    
     }; 
        
