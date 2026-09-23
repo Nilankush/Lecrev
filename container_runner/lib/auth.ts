@@ -23,9 +23,6 @@ const auth = betterAuth({
                 }
             } 
         },
-        cookieCache:{
-            enabled: true
-        },
         ipAddress:{
             ipAddressHeaders:["x-forwarded-for", "x-real-ip", "cf-connecting-ip"],
         }, 
@@ -40,6 +37,11 @@ const auth = betterAuth({
             clientId: process.env.AUTH_GITHUB_ID as string,
             clientSecret: process.env.AUTH_GITHUB_SECRET as string
         }
+    },
+    session:{
+        cookieCache:{
+            enabled: true
+        } 
     }
 });
 
