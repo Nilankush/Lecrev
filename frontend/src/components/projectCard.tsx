@@ -18,7 +18,7 @@ interface ProjectPropsSchema{
 export default function ProjectCard({project, projects, setProjects}: ProjectPropsSchema): React.JSX.Element{
 
     const deleteProject = async() => {
-        const res: AxiosResponse = await axios.delete(`http://localhost:5000/project/delete/${project._id}/${project.project_id}`,{withCredentials: true});
+        const res: AxiosResponse = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/project/delete/${project._id}/${project.project_id}`,{withCredentials: true});
         if(res.status === 200){
             setProjects(projects.filter((each:ProjectSchema)=>each._id!==project._id));
             return alert(res.data.message);
