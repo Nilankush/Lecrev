@@ -20,7 +20,7 @@ const auth = betterAuth({
                 attributes:{
                     sameSite: "none",
                     secure: true,
-                    partitioned: true
+
                 }
             } 
         },
