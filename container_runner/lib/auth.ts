@@ -16,10 +16,15 @@ const auth = betterAuth({
         database:{
             joins: true
         },
+        defaultCookieAttributes:{
+            sameSite: "none",
+            secure: true,
+            httpOnly:true
+        },
         cookies:{
             state:{
                 attributes:{
-                    sameSite: "none",
+                    sameSite: "None",
                     secure: true,
                     httpOnly: true,
                     path:"/"
