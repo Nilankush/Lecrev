@@ -7,7 +7,7 @@ const BASE_URL: string  = "https://pub-0c924e0663b345c2a2f5e69b2b308e13.r2.dev/o
 
 export const proxyHandler = (req: Request, res: Response) => {
     const hostname: string = req.hostname;   
-    const projectId: string|undefined = hostname.split(".")[0]; 
+    const projectId: string|undefined = hostname.split(".")[1]; 
     console.log(projectId);
     
 
