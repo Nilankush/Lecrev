@@ -6,7 +6,7 @@ const PORT = process.env.PORT;
 
 const app: Express  = express();
 
-app.use(proxyHandler);
+app.use("/:projectId",proxyHandler);
 
 app.listen(PORT,()=>{
     console.log(`Reverse proxy is running on Port:${PORT}...`);    
