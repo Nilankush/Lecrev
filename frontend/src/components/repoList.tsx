@@ -30,7 +30,7 @@ export default function RepoList({userName, setGitUrl, setOpenUpload}: RepoProps
                 <FaGithub/>
                 {userName}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">            
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 text-sm">            
                 {repoList?.map((repo: any, i: number)=>(
                     <div 
                     key={i} 

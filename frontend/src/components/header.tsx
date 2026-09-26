@@ -18,7 +18,7 @@ export default function Header(): React.JSX.Element{
                     <SidebarTrigger className="md:hidden"/>
                     <img src={logo} alt="logo" height={"20px"} width={"20px"}/>
                     <h1 
-                    className="inline-block text-lg md:text-2xl font-extrabold bg-linear-to-r from-[#8A2387] via-[#E94057] to-[#F27121] bg-clip-text text-transparent"
+                    className="inline-block text-lg md:text-3xl font-extrabold bg-linear-to-r from-[#8A2387] via-[#E94057] to-[#F27121] bg-clip-text text-transparent"
                     >
                     LECREV
                     </h1>

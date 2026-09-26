@@ -74,7 +74,7 @@ export const projectCreateController = async (req: Request, res: Response)=>{
       const newProject = await projectModel.create({
           created_by: req.user.id,
           project_id: project_id,
-          project_url: `https://lecrev-lnf2.onrender.com/${project_id}`
+          project_url: `http://${project_id}.localhost:8000`
       });
       return res.status(201).json(newProject);
   }

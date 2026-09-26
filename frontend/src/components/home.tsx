@@ -30,7 +30,7 @@ export default function Home(): React.JSX.Element{
 
     return(
         <div className="flex flex-col items-center w-full h-full p-2 md:p-5">
-            <h1 className="mt-2 md:mt-10 text-xl md:text-3xl font-bold font-mono">
+            <h1 className="mt-10 md:mt-10 text-xl md:text-3xl font-bold font-mono">
                 DEPLOY YOUR PROJECTS
             </h1>
             <p 
