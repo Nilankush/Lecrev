@@ -25,7 +25,7 @@ export default function RepoList({userName, setGitUrl, setOpenUpload}: RepoProps
 
     return(
         <div className="flex flex-col gap-4 items-center border rounded-2xl p-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-lg">
                 <p>Repositories from</p>
                 <FaGithub/>
                 {userName}

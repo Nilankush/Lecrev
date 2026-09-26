@@ -30,7 +30,7 @@ export default function Home(): React.JSX.Element{
 
     return(
         <div className="flex flex-col items-center w-full h-full p-2 md:p-5">
-            <h1 className="mt-10 md:mt-10 text-xl md:text-3xl font-bold font-mono">
+            <h1 className="mt-10 md:mt-20 text-xl md:text-3xl font-bold font-mono">
                 DEPLOY YOUR PROJECTS
             </h1>
             <p 
@@ -38,7 +38,7 @@ export default function Home(): React.JSX.Element{
                 Simple | Fast | Convenient
             </p>
             <div className="flex flex-col md:flex-row items-center gap-5 mt-8 mb-4 border py-1 px-3 rounded-2xl w-full justify-center">
-                <h2>Deploy your projects manually :</h2>
+                <h2>Deploy your projects using git utl :</h2>
                 <Button 
                 variant={"default"} 
                 onClick={()=>{
