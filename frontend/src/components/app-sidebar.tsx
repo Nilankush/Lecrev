@@ -77,7 +77,7 @@ export function AppSidebar() {
                     <SidebarMenuButton 
                     onClick={()=>{
                       projectInfoContext.setProjectInfo({project_id:"",projectUrl:""});
-                      navigate("/");}} 
+                      navigate("/home");}} 
                     className="w-50" 
                     tooltip="Home">
                       <FaHome/>
