@@ -9,13 +9,18 @@ import Provider from './provider.tsx'
 import UploadPage from './pages/uploadPage.tsx'
 import AccountPage from './pages/accountPage.tsx'
 import LogsPage from './pages/logsPage.tsx'
+import LandingPage from './pages/landingPage.tsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <LandingPage/>,
     errorElement: <ErrorPage/>
+  },
+  {
+    path:"/home",
+    element:<App/>
   },
   {
     path: "/projects",

@@ -9,7 +9,7 @@ export const authClient = createAuthClient({
 export const githubSignIn = async() => {
             await authClient.signIn.social({
             provider: "github",
-            callbackURL: import.meta.env.VITE_CALLBACK_URL
+            callbackURL: `${import.meta.env.VITE_CALLBACK_URL}home`
         });
     }; 
        
