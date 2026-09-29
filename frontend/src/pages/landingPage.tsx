@@ -300,7 +300,7 @@ export default function LandingPage():React.JSX.Element{
 
             <footer className="flex w-full items-center justify-between border-t px-4 py-6 text-xs text-muted-foreground md:px-10">
                 <p className={`font-extrabold ${gradientText}`}>LECREV</p>
-                <p className="font-mono">Simple | Fast | Convenient</p>
+                <p className="font-mono">@Nilankush Das</p>
             </footer>
         </div>
   );
