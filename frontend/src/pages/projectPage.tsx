@@ -66,7 +66,7 @@ export default function ProjectPage():React.JSX.Element{
                         {error && <h1 className="text-red-500 flex justify-center">{error}</h1>}
                         {!error && 
                         (projects.length === 0 ? (<div className="flex justify-center mt-5 md:text-xl font-semibold border rounded-2xl mx-2 md:mx-10 py-2">
-                            No projects found. <Link to={"/"} className="hover:underline hover:cursor-pointer text-cyan-300 italic font-light">Create your first one.</Link>
+                            No projects found. <Link to={"/home"} className="hover:underline hover:cursor-pointer text-cyan-300 italic font-light">Create your first one.</Link>
                             </div>) 
                         :
                         (<div className="border rounded-2xl">
