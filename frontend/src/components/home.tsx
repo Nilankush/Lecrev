@@ -38,7 +38,7 @@ export default function Home(): React.JSX.Element{
                 Simple | Fast | Convenient
             </p>
             <div className="flex flex-col md:flex-row items-center gap-5 mt-8 mb-4 border py-1 px-3 rounded-2xl w-full justify-center">
-                <h2>Deploy your projects using git utl :</h2>
+                <h2>Deploy your projects using git url:</h2>
                 <Button 
                 variant={"default"} 
                 onClick={()=>{
