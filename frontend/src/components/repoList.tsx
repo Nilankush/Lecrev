@@ -11,11 +11,11 @@ interface RepoProps{
 
 export default function RepoList({userName, setGitUrl, setOpenUpload}: RepoProps): React.JSX.Element{
 
-    const[repoList, setRepoList] = useState<any>();
+    const[repoList, setRepoList] = useState<any[]>([]);
 
     const fetchRepo = async(user: string) => {        
         const res = await axios.get(`https://api.github.com/users/${user}/repos`);
-        setRepoList(res.data);       
+        if(res.status===200) return setRepoList(res.data);       
     };
 
     useEffect(()=>{
@@ -24,7 +24,7 @@ export default function RepoList({userName, setGitUrl, setOpenUpload}: RepoProps
 
     return(
         <div className="flex flex-col gap-4 items-center border rounded-2xl p-2">
-            {repoList ? (<div>
+            {!(repoList?.length===0 ) ? (<div>
                 <div className="flex items-center gap-2 md:text-lg justify-center mb-2">
                     <p className="hidden md:flex">Repositories from</p>
                     <p className="flex md:hidden">Repos</p>
