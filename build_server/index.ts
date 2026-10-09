@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 export default async function connectDB(){
     try {
-        const mongoConn: typeof mongoose = await mongoose.connect("mongodb+srv://dasnilankush28_db_user:RVJ1Z7XG25y4OXjg@vercel-clone-cluster.azcexuo.mongodb.net/");
+        const mongoConn: typeof mongoose = await mongoose.connect(process.env.MONGODB_URI as string);
         console.log("DB is connected");
         return mongoConn;
     } catch (error) {
@@ -47,14 +47,14 @@ const projectModel = mongoose.model("projects", projectSchema);
 
 const R2_client = new S3Client({
     region: "auto",
-    endpoint: "https://94f3153fd351eb90ba0e5b53210f82b1.r2.cloudflarestorage.com",
+    endpoint: process.env.R2_ENDPOINT as string,
     credentials:{
-        accessKeyId: "bbbc58a03cb1da995fedf87377905207",
-        secretAccessKey: "00649a1785ce18c2944a9a3258aaf325b6ea5f24750ae655ff95ed5970ead643"
+        accessKeyId: process.env.R2_ACCESSKEY_ID as string,
+        secretAccessKey: process.env.R2_SECRET_ACCESSKEY as string
     }
 });
 
-const producer = new Redis("rediss://default:gQAAAAAAAZ9UAAIgcDJlNDM2M2Y5ZDUzZjc0ODQzOGUwYjNhZTk1YTBlMGU5Zg@joint-mutt-106324.upstash.io:6379");
+const producer = new Redis(process.env.REDIS_URL as string);
 
 const publishLog = async(logs: string): Promise<void> =>{
     await producer.publish(`logs:${projectId}`,JSON.stringify({projectId, logs}));
