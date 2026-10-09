@@ -37,6 +37,7 @@ export const projectCreateController = async (req: Request, res: Response)=>{
   if(!gitUrl || !project_id || !buildScript) return res.status(404).json({msg:"bad request."});
 
   const defaultEnv = [
+    {name: "USER_ID", value: req.user.id},
     {name: "GIT_REPOSITORY_URL", value: gitUrl},
     {name: "PROJECT_ID", value: project_id},
     {name: "BUILD_SCRIPT", value: buildScript}
@@ -71,12 +72,10 @@ export const projectCreateController = async (req: Request, res: Response)=>{
   
 
   if(r2_Res.$metadata.httpStatusCode === 200){
-      const newProject = await projectModel.create({
-          created_by: req.user.id,
-          project_id: project_id,
-          project_url: `https://${project_id}.lecrev.shop`
-      });
-      return res.status(201).json(newProject);
+    return res.status(201).json({
+      project_id: project_id,
+      project_url: `https://${project_id}.lecrev.shop`
+    });
   }
   
   return res.status(500).json({msg: "Server error."});

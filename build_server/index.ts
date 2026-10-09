@@ -5,23 +5,56 @@ import { fileURLToPath } from "url";
 import {PutObjectCommand, S3Client} from "@aws-sdk/client-s3";
 import mime from "mime-types";
 import {Redis} from "ioredis";
+import mongoose from "mongoose";
 
 const projectId = process.env.PROJECT_ID;
 const buildScript = process.env.BUILD_SCRIPT;
+const userId = process.env.USER_ID;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+export default async function connectDB(){
+    try {
+        const mongoConn: typeof mongoose = await mongoose.connect("mongodb+srv://dasnilankush28_db_user:RVJ1Z7XG25y4OXjg@vercel-clone-cluster.azcexuo.mongodb.net/");
+        console.log("DB is connected");
+        return mongoConn;
+    } catch (error) {
+        console.error(error);
+        process.exit(1);        
+    };
+};
+
+connectDB();
+
+const projectSchema = new mongoose.Schema({
+    created_by:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+        required: true
+    },
+    project_id:{
+        type: String,
+        required: true
+    },
+    project_url:{
+        type: String,
+        required: true
+    },
+});
+
+const projectModel = mongoose.model("projects", projectSchema);
+
 const R2_client = new S3Client({
     region: "auto",
-    endpoint: process.env.R2_ENDPOINT as string,
+    endpoint: "https://94f3153fd351eb90ba0e5b53210f82b1.r2.cloudflarestorage.com",
     credentials:{
-        accessKeyId: process.env.R2_ACCESSKEY_ID as  string,
-        secretAccessKey: process.env.R2_SECRET_ACCESSKEY as string
+        accessKeyId: "bbbc58a03cb1da995fedf87377905207",
+        secretAccessKey: "00649a1785ce18c2944a9a3258aaf325b6ea5f24750ae655ff95ed5970ead643"
     }
 });
 
-const producer = new Redis(process.env.REDIS_URL as string);
+const producer = new Redis("rediss://default:gQAAAAAAAZ9UAAIgcDJlNDM2M2Y5ZDUzZjc0ODQzOGUwYjNhZTk1YTBlMGU5Zg@joint-mutt-106324.upstash.io:6379");
 
 const publishLog = async(logs: string): Promise<void> =>{
     await producer.publish(`logs:${projectId}`,JSON.stringify({projectId, logs}));
@@ -36,8 +69,8 @@ async function uploader(): Promise<void>{
     const outputDirPath: string = path.join(__dirname,"output");
 
     const allEnvs = Object.entries(process.env);
-    if(allEnvs.length>37){
-       allEnvs.length = (allEnvs.length - 37);
+    if(allEnvs.length>38){
+       allEnvs.length = (allEnvs.length - 38);
        const envContent = allEnvs.map(({name,value}:any)=> `${name}=${/[\n\s#]/.test(value)? JSON.stringify(value): value}`).join("\n");
        if(envContent) {
         fs.writeFileSync(path.join(outputDirPath, ".env"), envContent, "utf-8");     
@@ -96,6 +129,14 @@ async function uploader(): Promise<void>{
 
         console.log("finished.");
         await publishLog("finished.");
+
+        if(userId && projectId){
+            await projectModel.create({
+                created_by: userId,
+                project_id: projectId,
+                project_url: `https://${projectId}.lecrev.shop`
+            });
+        };
 
         process.exit(0);
 
